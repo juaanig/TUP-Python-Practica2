@@ -87,9 +87,9 @@ def superposicion_set(lista_1: Iterable[Any], lista_2: Iterable[Any]) -> bool:
     Referencia: https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset  # noqa: E501
     """
     
-    resultado = set(lista_1).isdisjoint(set(lista_2))
+    return bool(set(lista_1).intersection(set(lista_2)))
 
-    return not resultado
+    
 
 
 # NO MODIFICAR - INICIO
