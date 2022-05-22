@@ -79,7 +79,7 @@ Restricción: Utilizar reduce, lambda y la variable numeros_al_cubo_pares
 from functools import reduce  # noqa: E402
 
 suma_numeros_al_cubo_pares =  reduce(lambda a,b:a+b,numeros_al_cubo_pares)
-
+#modificacion 
 
 # NO MODIFICAR - INICIO
 assert numeros_al_cubo == [1, 8, 27, 64, 125, 216]
