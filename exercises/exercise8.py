@@ -1,11 +1,8 @@
 """Tuple, Enumerate, Zip, Args.
-
-
 Contexto: Se tiene un programa que lee diferentes listas de una tabla en una
 base de datos y se quieren combinar estas listas para que luego puedan crearse
 los objetos de la capa de negocio.
 """
-
 
 from typing import Any, List, Tuple
 
@@ -13,16 +10,21 @@ nombre_articulos = ["ventana", "lámpara", "shampoo"]
 precio_articulos = [100.48, 16.42, 5.20]
 
 
+
 def combinar_basico(nombres: List[str], precios: List[float]) -> Tuple[Any]:
     """Toma dos listas y devuelve una tupla de duplas con los componentes de
     las listas.
-
     Restricción:
         - Utilizar un bucle FOR.
         - Utilizar la función range.
         - Utilizar índices.
     """
-
+    result=[]
+    for i in range(len(nombres)):
+        dupla = []
+        dupla.extend([nombres[i],precios[i]])
+        result.append(tuple(dupla))
+    return tuple(result)
 
 # NO MODIFICAR - INICIO
 respuesta = (
@@ -38,20 +40,26 @@ assert combinar_basico(nombre_articulos, precio_articulos) == respuesta
 ###############################################################################
 
 
+
 id_articulos = [6852, 1459, 3578]
 
 
 def combinar_enumerate(nombres: List[str], precios: List[float], ids: List[int]) -> Tuple[Any]:  # noqa: E501
     """Re-Escribir utilizando enumerate y agregando un nuevo componente.
-
     Restricción:
         - Utilizar un bucle FOR.
         - No Utilizar la función range.
         - No Utilizar la función zip.
-
     Referencia: https://docs.python.org/3/library/functions.html#enumerate
     """
-
+    result=[]
+    for indice, names in enumerate(nombres):
+        element = []
+        price = precios[indice]
+        id = ids[indice]
+        element.extend([names ,price, id])
+        result.append(tuple(element))
+    return tuple(result)
 
 # NO MODIFICAR - INICIO
 respuesta = (
@@ -67,12 +75,12 @@ assert combinar_enumerate(nombre_articulos, precio_articulos, id_articulos) == r
 ###############################################################################
 
 
+
 id_articulos = [6852, 1459, 3578]
 
 
 def combinar_zip(nombres: List[str], precios: List[float], ids: List[int]) -> Tuple[Any]:  # noqa: E501
     """Re-Escribir utilizando zip.
-
     Restricción:
         - Utilizar un bucle FOR.
         - No utilizar la función range.
@@ -80,6 +88,12 @@ def combinar_zip(nombres: List[str], precios: List[float], ids: List[int]) -> Tu
         - No utilizar índices.
     Referencia: https://docs.python.org/3/library/functions.html#zip
     """
+    result = []
+    for names, price, id in zip(nombres, precios, ids):
+        element = []
+        element.extend([names, price, id])
+        result.append(tuple(element)) 
+    return tuple(result)
 
 
 # NO MODIFICAR - INICIO
@@ -103,16 +117,20 @@ importado_articulos = [True, False, True]
 
 def combinar_zip_args(*args) -> Tuple[Any]:
     """Re-Escribir utilizando zip y una cantidad arbitraria de componentes.
-
     Restricción:
         - Utilizar un bucle FOR.
         - No utilizar la función range.
         - No utilizar la función enumerate.
         - No utilizar índices.
-
     Referencia: https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists  # noqa: E501
     """
-
+    
+    result = []
+    for names, price, id, cat, importado in zip(*args):
+        element = []
+        element.extend([names, price, id, cat, importado])
+        result.append(tuple(element)) 
+    return tuple(result)
 
 # NO MODIFICAR - INICIO
 respuesta = (
